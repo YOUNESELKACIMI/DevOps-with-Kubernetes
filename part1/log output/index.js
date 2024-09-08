@@ -11,7 +11,7 @@ const printString = () => {
     console.log(date+": "+randomString)
 }
 
-app.get('/',(req,res)=>{
+app.get('/log',(req,res)=>{
     let date = new Date().toISOString()
     let logString = date+": "+randomString
     res.send(logString).status(200)
