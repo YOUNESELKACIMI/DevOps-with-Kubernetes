@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pingpong-svc
+spec:
+  type: ClusterIP
+  selector:
+    app:
+      pingpong
+  ports:
+    - name: pingpong
+      protocol: TCP
+      port: 4445
+      targetPort: 3000
