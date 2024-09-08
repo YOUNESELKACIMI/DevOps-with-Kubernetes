@@ -15,3 +15,6 @@ spec:
       containers:
         - name: strgenerator
           image: younes0204/random_string_generator
+          env:
+            - name: PORT
+              value: '3000'
