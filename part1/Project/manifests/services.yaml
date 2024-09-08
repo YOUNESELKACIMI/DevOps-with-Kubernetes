@@ -3,11 +3,11 @@ kind: Service
 metadata:
   name: crudapp-svc
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app:  crudapp
   ports:
     - name: crudapp-service
-      nodePort: 30080
+      protocol: TCP
       port: 4444
       targetPort: 3000
