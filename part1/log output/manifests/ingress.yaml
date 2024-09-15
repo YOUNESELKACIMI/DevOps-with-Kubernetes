@@ -14,7 +14,7 @@ spec:
                 port:
                   number: 4444 
           
-          - path: /count
+          - path: /pingpong
             pathType: Prefix
             backend:
               service:
