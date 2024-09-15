@@ -8,7 +8,7 @@ let count = 0
 
 
 
-app.get('/count',(req,res)=>{
+app.get('/pingpong',(req,res)=>{
 
     res.send(`pong ${count}`)
     count+=1
