@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: files-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app:  files
+  template:
+    metadata:
+      labels:
+        app:  files
+    spec:
+      volumes:
+        - name: shared-file
+          emptyDir: {}
+      containers:
+        - name: log-generator
+          image: younes0204/log-generator
+          env:
+            - name: PORT
+              value: '8081'
+          ports:
+            - containerPort: 8081
+          volumeMounts:
+            - name: shared-file
+              mountPath: /usr/share
+        - name: log-reader
+          image: younes0204/log-reader
+          env:
+            - name: PORT
+              value: '8082'
+          ports:
+            - containerPort: 8082
+          volumeMounts:
+            - name: shared-file
+              mountPath: /usr/share
