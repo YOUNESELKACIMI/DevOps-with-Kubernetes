@@ -12,9 +12,16 @@ spec:
       labels:
         app: strgenerator
     spec:
+      volumes:
+        - name: shared-file
+          persistentVolumeClaim:
+            claimName: file-claim
       containers:
         - name: strgenerator
           image: younes0204/random_string_generator
           env:
             - name: PORT
               value: '3000'
+          volumeMounts:
+            - name: shared-file
+              mountPath: /usr/share

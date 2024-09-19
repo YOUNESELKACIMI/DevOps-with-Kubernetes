@@ -1,4 +1,5 @@
 require('dotenv').config()
+const fs = require('fs')
 const express = require('express')
 
 const app = express()
@@ -14,6 +15,13 @@ const printString = () => {
 app.get('/log',(req,res)=>{
     let date = new Date().toISOString()
     let logString = date+": "+randomString
+    fs.writeFile("/usr/share/pingpongTimestamps.txt",logString,(err)=>{
+        if(err){
+            console.log("failed to write data")
+            return
+        }
+        console.log("successfully writen data to file")
+    })
     res.send(logString).status(200)
 })
 
