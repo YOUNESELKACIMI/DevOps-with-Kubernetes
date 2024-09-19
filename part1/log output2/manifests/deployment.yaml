@@ -14,7 +14,8 @@ spec:
     spec:
       volumes:
         - name: shared-file
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: storage-claim
       containers:
         - name: log-generator
           image: younes0204/log-generator
