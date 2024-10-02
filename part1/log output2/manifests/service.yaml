@@ -5,7 +5,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: files
+    app: log
   ports:
     - name: log-generator
       protocol: TCP
