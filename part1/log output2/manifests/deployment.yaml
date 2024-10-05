@@ -26,5 +26,19 @@ spec:
           env:
             - name: PORT
               value: '8082'
+            - name: MESSAGE
+              valueFrom:
+                configMapKeyRef:
+                  name: log-output-config-map
+                  key: information.txt
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/config
+              readOnly: true
           ports:
             - containerPort: 8082
+      volumes:
+        - name: config-volume
+          configMap:
+            name: log-output-config-map
+

@@ -16,7 +16,7 @@ app.get('/log_reader',async (req,res)=>{
     const log = response.data.log
 
 
-    res.status(200).send(`<p>${log}</p><p>${count}</p>`)
+    res.status(200).send(`<p>file content: this text is from file</p><p>env variable: ${process.env.MESSAGE}</p><p>${log}</p><p>${count}</p>`)
     //res.status(200).send(`${log} \n\n ${count}`)
     count++
 
