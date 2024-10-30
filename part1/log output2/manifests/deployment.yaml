@@ -31,6 +31,8 @@ spec:
                 configMapKeyRef:
                   name: log-output-config-map
                   key: information.txt
+            - name: DATABASE_URL 
+              value: 'postgres://postgres:postgres@postgres-svc:5432/postgres'
           volumeMounts:
             - name: config-volume
               mountPath: /etc/config

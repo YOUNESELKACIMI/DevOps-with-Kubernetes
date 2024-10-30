@@ -1,6 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
+  namespace: log-output-ns
   name: my-busybox
   labels:
     app: my-busybox
