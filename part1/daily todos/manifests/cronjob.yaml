@@ -1,0 +1,27 @@
+apiVersion:  batch/v1
+kind: CronJob
+metadata:
+  namespace: log-output-ns
+  name: daily-todos
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    metadata:
+      labels:
+        cron-job-name: daily-todos
+    spec:
+      template:
+        metadata:
+          labels:
+            cron-job-name: daily-todos
+        spec:
+          containers:
+          - name: todo-generator
+            image: curlimages/curl:latest
+            imagePullPolicy:  IfNotPresent
+            command:
+              - /bin/sh
+              - -c
+              - URL=$(curl -s -L -w %{url_effective} https://en.wikipedia.org/wiki/Special:Random)        
+              - echo "Read $URL"            
+          restartPolicy:  OnFailure
