@@ -4,7 +4,7 @@ metadata:
   namespace: log-output-ns
   name: daily-todos
 spec:
-  schedule: "* * * * *"
+  schedule: "0 * * * *"
   jobTemplate:
     metadata:
       labels:
