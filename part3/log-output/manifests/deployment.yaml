@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: log-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app:  log
+  template:
+    metadata:
+      labels:
+        app:  log
+    spec:
+      containers:
+        - name: log-generator
+          image: younes0204/log-generator
+          env:
+            - name: PORT
+              value: '8081'
+          ports:
+            - containerPort: 8081
+        - name: log-reader
+          image: younes0204/log-reader
+          env:
+            - name: PORT
+              value: '8082'
+            - name: MESSAGE
+              valueFrom:
+                configMapKeyRef:
+                  name: log-output-config-map
+                  key: information.txt
+            - name: DATABASE_URL 
+              value: 'postgres://postgres:postgres@postgres-svc:5432/postgres'
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/config
+              readOnly: true
+          ports:
+            - containerPort: 8082
+      volumes:
+        - name: config-volume
+          configMap:
+            name: log-output-config-map
+
