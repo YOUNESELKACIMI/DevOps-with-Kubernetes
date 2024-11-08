@@ -25,6 +25,12 @@ Count.init({
 
 Count.sync({ force: true })
 
+app.get('/',(req,res)=>{
+    res.status(200).json({message:"health check"})
+})
+
+
+
 let count = 0
 const url = "http://localhost:8081/log_Generator"
 
